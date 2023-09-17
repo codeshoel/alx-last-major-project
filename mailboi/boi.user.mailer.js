@@ -25,7 +25,7 @@ module.exports = {
                     to activate your account by clicking the link below to help us serve you well.
                     </p>
                     <br/>
-                    <a href=${process.env.BASED_URI}/account/email-verification/?token=${emailToken}>Click to activate account</a>
+                    <a href=${process.env.BASED_URI}/account/email-verification/?token=${emailToken}>Activate</a>
                 `
         },(err) => {
             if(err){
