@@ -8,9 +8,10 @@ app.use(express.json());
 
 //Routers
 const userRouter = require('./routes/user.routes')
+const categoryRouter = require('./routes/category.routes')
 
 app.use('/api/v1/auth', userRouter)
-
+app.use('/api/v1/cate', categoryRouter)
 
 
 const port = process.env.ACCESS_PORT || 7000;

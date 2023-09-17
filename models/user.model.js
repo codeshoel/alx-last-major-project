@@ -1,7 +1,5 @@
 require('dotenv').config({path: '../.env'})
 const mongoose = require('mongoose')
-const bcrypt = require('bcryptjs')
-const jwt = require('jsonwebtoken')
 
 const schema = mongoose.Schema;
 
@@ -39,35 +37,6 @@ const UserSchema = new schema({
         default: Date.now()
     }
 });
-
-
-// Delete data associated to user if user account is deleted.
-// This way, when you call client.remove() 
-// this middleware is automatically invoked to clean up dependencies.
-// UserSchema.pre('remove', {query: true, document: false}, async function(next){
-//     await mongoose.model('Wallet').remove({user_id: this._id}).exec();
-//     next()
-// });
-
-// hash password before saving user
-// UserSchema.pre('save', async function(next) {
-//     const salt = await bcrypt.genSalt(10)
-//     // console.log(this.password);
-//     this.password = await bcrypt.hash(this.password, 10)
-// });
-
-// generate jwtToken
-// UserSchema.methods.createJWT = function (){
-//     return jwt.sign({userId: this._id, email: this.email}, process.env.JWT_SECRET, {expiresIn: process.env.JWT_LIFETIME})
-// }
-
-// // Password comparism before logging user
-// UserSchema.methods.comparePassword = async function(endUserPassword) {
-//     const isMatch = await bcrypt.compare(endUserPassword, this.password)
-//     return isMatch
-// }
-
-
 
 module.exports = mongoose.model('User', UserSchema)
 
