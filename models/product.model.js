@@ -10,8 +10,8 @@ const ProductSchema = new schema({
         minlength: 2,
         require: [true, 'Product name is required.']
     },
-    category: {
-        type: Number,
+    category_id: {
+        type: String,
         require: [true, 'Product category is required.']
     },
     price: {
@@ -19,11 +19,13 @@ const ProductSchema = new schema({
         require: [true, 'Product price is required.']
     },
     images: {
-        type: String,
-        require: [true, 'Product image is required.']
+        type: Map,
+        of: String,
+        require: [true, 'Images are required.']
     },
     status: {
-        type: Number
+        type: Number,
+        default: 0
     },
     created_at: {
         type: Date,

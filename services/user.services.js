@@ -30,21 +30,27 @@ module.exports = {
         }catch(error){
             await session.abortTransaction();
             console.log(error);
+            return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({data: error})
         }
         
     },
     login: async (req, res) => {
         const {email, password} = req.body;
-        const user = await User.findOne({email: email})
-        if(!user){
-            return res.status(StatusCodes.UNAUTHORIZED).json({ data: 'Invalid credentials.' })
+        try{
+            const user = await User.findOne({email: email})
+            if(!user){
+                return res.status(StatusCodes.UNAUTHORIZED).json({ data: 'Invalid credentials.' })
+            }
+            const isPasswordValid = await authHelper.comparePassword(password, user.password)
+            if(!isPasswordValid){
+                return res.status(StatusCodes.UNAUTHORIZED).json({ data: 'Invalid credentials.' })
+            }
+            const token = await authHelper.createJWT({user_id: user._id, email: email})
+            return res.status(StatusCodes.OK).json({token: token, status: StatusCodes.OK});
+        }catch(error){
+            console.log(error)
+            return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({data: error})
         }
-        const isPasswordValid = await authHelper.comparePassword(password, user.password)
-        if(!isPasswordValid){
-            return res.status(StatusCodes.UNAUTHORIZED).json({ data: 'Invalid credentials.' })
-        }
-        const token = await authHelper.createJWT({user_id: user._id, email: email})
-        return res.status(StatusCodes.OK).json({token: token, status: StatusCodes.OK});
     },
 }
 
