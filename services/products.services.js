@@ -6,20 +6,20 @@ const {StatusCodes} = require('http-status-codes')
 
 module.exports = {
     create: async (req, res) => {
-        const { name, price, category } = req.body
+        const { name, price, category, stock } = req.body
         const files = req.files;
         const fileToUpload = {}
         for(index in files){
             fileToUpload[index] = files[index].filename
         }
         try{
-            const products = await Product.create({name: name, price: price, category_id: category, images: fileToUpload})
+            const products = await Product.create({name: name, price: price, category_id: category, images: fileToUpload, stock: stock})
             return res.status(StatusCodes.CREATED).json({data: products._id, status: StatusCodes.CREATED})
         }catch(error){
             return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({data: error})
         }
     },
-    fetch: async (req, res) => {
+    fetchAll: async (req, res) => {
         try{
             let products = await Product.find({})
             // console.log(products.length);
@@ -31,14 +31,37 @@ module.exports = {
             return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({data: error})
         }
     },
+    fetchSingle: async (req, res) => {
+        const {id: product_id} = req.params;
+        try{
+            const products = await Product.find({_id: product_id})
+            if(!products.length){
+                return res.status(StatusCodes.NOT_FOUND).json({data: `Product not found`, status: StatusCodes.NOT_FOUND}) 
+            }
+            return res.status(StatusCodes.OK).json({products})
+        }catch(error){
+            console.log(error)
+        }
+    },
+    fetchByCategory: async (req, res) => {
+        const {id: category_id} = req.params;
+        try{
+            const products = await Product.find({category_id: category_id})
+            if(products.length == 0){
+                return res.status(StatusCodes.NOT_FOUND).json({data: `No Products under selected category`, status: StatusCodes.NOT_FOUND}) 
+            }
+            return res.status(StatusCodes.OK).json({products})
+        }catch(error){
+            console.log(error)
+        }
+    },
     update: async (req, res) => {
         const {id: product_id} = req.params;
-        const {name: name, category: category_id, price: price} = req.body
+        const {name: name, category: category_id, price: price, stock: stock} = req.body
         const files = req.files;
         try{
             const validateProduct = await Product.findOne({_id: product_id})
             const validateCategory = await Category.findOne({_id: category_id})
-            console.log(validateCategory._id)
             if(!validateProduct){
                 return res.status(StatusCodes.NOT_FOUND).json({data: `No Product with id: ${product_id}`, status: StatusCodes.NOT_FOUND}) 
             }
@@ -62,7 +85,7 @@ module.exports = {
                 fileToUpload[index] = files[index].filename
             }
             try{
-                const product = await Product.findOneAndUpdate({_id: product_id}, {name: name, category_id: validateCategory._id, price: price, images: fileToUpload}, {new: true, runValidators: true})
+                const product = await Product.findOneAndUpdate({_id: product_id}, {name: name, category_id: validateCategory._id, price: price, images: fileToUpload, stock: stock}, {new: true, runValidators: true})
                 return res.status(StatusCodes.OK).json({data: product, status: StatusCodes.OK})
             }catch(error){
                 //console.log(error)

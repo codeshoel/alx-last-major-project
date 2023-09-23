@@ -12,10 +12,12 @@ app.use(express.static('uploads'))
 const userRouter = require('./routes/user.routes')
 const categoryRouter = require('./routes/category.routes')
 const productRouter = require('./routes/product.routes')
+const cartRouter = require('./routes/cart.routes')
 
 app.use('/api/v1/auth', userRouter)
 app.use('/api/v1/cate', categoryRouter)
 app.use('/api/v1/', productRouter)
+app.use('/api/v1/', cartRouter)
 
 
 const port = process.env.ACCESS_PORT || 7000;

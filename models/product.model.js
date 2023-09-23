@@ -23,6 +23,10 @@ const ProductSchema = new schema({
         of: String,
         require: [true, 'Images are required.']
     },
+    stock: {
+        type: Number,
+        default: 0
+    },
     status: {
         type: Number,
         default: 0
