@@ -17,5 +17,9 @@ module.exports = {
     deleteItem: async (req, res) => {
         const response = await service.deleteItem(req, res)
         return response;
+    },
+    checkout: async (req, res) => {
+        const response = await service.checkoutItem(req, res)
+        return response;
     }
 }

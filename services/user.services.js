@@ -45,8 +45,8 @@ module.exports = {
             if(!isPasswordValid){
                 return res.status(StatusCodes.UNAUTHORIZED).json({ data: 'Invalid credentials.' })
             }
-            const token = await authHelper.createJWT({user_id: user._id, email: email})
-            return res.status(StatusCodes.OK).json({token: token, status: StatusCodes.OK});
+            const token = await authHelper.createJWT({user_id: user._id, email: user.email})
+            return res.status(StatusCodes.OK).json({token: token, username: user.name, status: StatusCodes.OK});
         }catch(error){
             console.log(error)
             return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({data: error})

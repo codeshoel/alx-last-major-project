@@ -2,7 +2,6 @@ const Cart = require('../models/cart.model');
 const { StatusCodes } = require('http-status-codes');
 const Product = require('../models/product.model');
 
-
 module.exports={
     addItem: async (req, res) => {
         const user_id = req.user.user_id;
@@ -87,6 +86,9 @@ module.exports={
             console.log(error)
             return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({error})
         }
+    },
+    checkoutItem: async (req, res) => {
+        // const 
     },
 }
 
