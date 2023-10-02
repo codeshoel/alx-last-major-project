@@ -6,14 +6,14 @@ const {StatusCodes} = require('http-status-codes')
 
 module.exports = {
     create: async (req, res) => {
-        const { name, price, category, stock } = req.body
+        const { name, price, category, description, stock } = req.body
         const files = req.files;
         const fileToUpload = {}
         for(index in files){
             fileToUpload[index] = files[index].filename
         }
         try{
-            const products = await Product.create({name: name, price: price, category_id: category, images: fileToUpload, stock: stock})
+            const products = await Product.create({name: name, price: price, category_id: category, images: fileToUpload, stock: stock, description: description})
             return res.status(StatusCodes.CREATED).json({data: products._id, status: StatusCodes.CREATED})
         }catch(error){
             return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({data: error})
@@ -21,7 +21,7 @@ module.exports = {
     },
     fetchAll: async (req, res) => {
         try{
-            let products = await Product.find({})
+            let products = await Product.find({}).sort('-_id')
             // console.log(products.length);
             if(products.length == 0){
                 return res.status(StatusCodes.OK).json({data: `No Product to showcase.`, status: StatusCodes.OK})
