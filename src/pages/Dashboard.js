@@ -14,7 +14,7 @@ const Dashboard = () => {
                             <div className="tab-pane active in" id="account-dashboard">
                                 <p className="greeting">
                                 Hello
-                                <span className="text-dark font-weight-bold">{' username'}</span>
+                                <span className="text-dark font-weight-bold">{' Kum Jude'}</span>
                                 </p>
                                 <p className="mb-4">
                                 From your account dashboard you can view your{" "}

@@ -24,7 +24,7 @@ const OrderCompleted = () => {
                     <ul className="order-view list-style-none">
                         <li>
                         <label>Order ID</label>
-                        <strong>#</strong>
+                        <strong>#SHP0001</strong>
                         </li>
                         <li>
                         <label>Status</label>
@@ -32,15 +32,15 @@ const OrderCompleted = () => {
                         </li>
                         <li>
                         <label>Date</label>
-                        <strong>date</strong>
+                        <strong>October 4, 2023</strong>
                         </li>
                         <li>
                         <label>Total</label>
                         <strong>$<CartTotal cartProducts={cartItems} /></strong>
                         </li>
                         <li>
-                        <label>Payment method</label>
-                        <strong>Paypal</strong>
+                        <label>Payment Method</label>
+                        <strong>Direct Bank Transfer</strong>
                         </li>
                     </ul>
                     {/* End of Order View */}
@@ -61,7 +61,7 @@ const OrderCompleted = () => {
                             </tr>
                             <tr>
                             <th>Payment method:</th>
-                            <td>Paypal</td>
+                            <td>Direct Bank Transfer</td>
                             </tr>
                             <tr className="total">
                             <th className="border-no">Total:</th>

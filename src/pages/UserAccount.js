@@ -8,43 +8,10 @@ const UserAccount = () => {
                 <main className="main">
                 <div className="container">
                     <div className="tab tab-vertical row gutter-lg">
-                    <ul className="nav nav-tabs mb-6" role="tablist">
-                        <li className="nav-item">
-                        <a href="#account-dashboard" className="nav-link active">
-                            Dashboard
-                        </a>
-                        </li>
-                        <li className="nav-item">
-                        <a href="#account-orders" className="nav-link">
-                            Orders
-                        </a>
-                        </li>
-                        <li className="nav-item">
-                        <a href="#account-downloads" className="nav-link">
-                            Downloads
-                        </a>
-                        </li>
-                        <li className="nav-item">
-                        <a href="#account-addresses" className="nav-link">
-                            Addresses
-                        </a>
-                        </li>
-                        <li className="nav-item">
-                        <a href="#account-details" className="nav-link">
-                            Account details
-                        </a>
-                        </li>
-                        <li className="nav-item">
-                        <a href="wishlist.html" className="nav-link">Wishlist</a>
-                        </li>
-                        <li className="nav-item">
-                        <a href="login.html" className="nav-link">Logout</a>
-                        </li>
-                    </ul>
                     <div className="tab-content mb-6">
                         <div className="tab-pane active in" id="account-dashboard">
                         <p className="greeting">
-                            Hello John Doe
+                            Hello Kum Jude!
                         </p>
                         <p className="mb-4">
                             From your account dashboard you can view your{" "}
@@ -62,7 +29,7 @@ const UserAccount = () => {
                         </p>
                         <div className="row">
                             <div className="col-lg-4 col-md-6 col-sm-4 col-xs-6 mb-4">
-                            <a href="#account-orders" className="link-to-tab">
+                            <a href="/orders" className="link-to-tab">
                                 <div className="icon-box text-center">
                                 <span className="icon-box-icon icon-orders">
                                     <i className="w-icon-orders" />
@@ -74,19 +41,7 @@ const UserAccount = () => {
                             </a>
                             </div>
                             <div className="col-lg-4 col-md-6 col-sm-4 col-xs-6 mb-4">
-                            <a href="#account-downloads" className="link-to-tab">
-                                <div className="icon-box text-center">
-                                <span className="icon-box-icon icon-download">
-                                    <i className="w-icon-download" />
-                                </span>
-                                <div className="icon-box-content">
-                                    <p className="text-uppercase mb-0">Downloads</p>
-                                </div>
-                                </div>
-                            </a>
-                            </div>
-                            <div className="col-lg-4 col-md-6 col-sm-4 col-xs-6 mb-4">
-                            <a href="#account-addresses" className="link-to-tab">
+                            <a href="/user/addresses" className="link-to-tab">
                                 <div className="icon-box text-center">
                                 <span className="icon-box-icon icon-address">
                                     <i className="w-icon-map-marker" />
@@ -98,7 +53,7 @@ const UserAccount = () => {
                             </a>
                             </div>
                             <div className="col-lg-4 col-md-6 col-sm-4 col-xs-6 mb-4">
-                            <a href="#account-details" className="link-to-tab">
+                            <a href="/user/account-details" className="link-to-tab">
                                 <div className="icon-box text-center">
                                 <span className="icon-box-icon icon-account">
                                     <i className="w-icon-user" />
@@ -122,7 +77,7 @@ const UserAccount = () => {
                             </a>
                             </div>
                             <div className="col-lg-4 col-md-6 col-sm-4 col-xs-6 mb-4">
-                            <a href="#">
+                            <a href="/auth/login">
                                 <div className="icon-box text-center">
                                 <span className="icon-box-icon icon-logout">
                                     <i className="w-icon-logout" />

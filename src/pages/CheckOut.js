@@ -1,25 +1,38 @@
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import OrderSummary from "../components/OrderSummary";
 import CartNav from "../components/CartNav";
+import NotifySuccess from '../utils/notifications/NotifySuccess';
 
 const CheckOut = () => {
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    const [orderStatusMsg, setOrderStatusMsg] = useState('Place Order');
+    const navigate = useNavigate();
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setOrderStatusMsg('Placing Order...');
+        setTimeout(() => {
+            setOrderStatusMsg('Order Sent');
+            NotifySuccess('Thank you for placing an order')
+            navigate('/order-completed')
+        }, 5000);
+        
+    }
+
+    
     return (
         <>
             <main className="main checkout">
                 <CartNav />
                 <div className="page-content">
-                    <div className="container">
-                    <div className="login-toggle">
-                        Returning customer?{" "}
-                        <a
-                        href="/"
-                        className="show-login font-weight-bold text-uppercase text-dark"
-                        >
-                        Login
-                        </a>
-                    </div>
-                   
-                    <form className="form checkout-form" action="#" method="post">
+                    <div className="container">                   
+                    <form 
+                        className="form checkout-form" 
+                        method="post"
+                        onSubmit={handleSubmit}
+                    >
                         <div className="row mb-9">
                         <div className="col-lg-7 pr-lg-4 mb-4">
                             <h3 className="title billing-title text-uppercase ls-10 pt-1 pb-3 mb-0">
@@ -33,6 +46,7 @@ const CheckOut = () => {
                                     type="text"
                                     className="form-control form-control-md"
                                     name="firstname"
+                                    value="Kum Jude"
                                     required=""
                                 />
                                 </div>
@@ -56,7 +70,6 @@ const CheckOut = () => {
                                 <option value="default" selected="selected">
                                     Cameroon
                                 </option>
-                                <option value="nigeria">Nigeria</option>
                                 </select>
                             </div>
                             </div>
@@ -100,7 +113,11 @@ const CheckOut = () => {
                                     <option value="default" selected="selected">
                                         Centre
                                     </option>
+                                    <option value="uk">Adamawa</option>
+                                    <option value="uk">Centre</option>
                                     <option value="uk">Littoral</option>
+                                    <option value="uk">North West</option>
+                                    <option value="uk">South West</option>
                                     </select>
                                 </div>
                                 </div>
@@ -121,6 +138,7 @@ const CheckOut = () => {
                                 type="email"
                                 className="form-control form-control-md"
                                 name="email"
+                                value="kumjude@gmail.com"
                                 required=""
                             />
                             </div>                         
@@ -159,7 +177,7 @@ const CheckOut = () => {
                                         <div className="card">
                                             <div className="card-header">
                                                 <a href="#cash-on-delivery" className="collapse">
-                                                Direct Bank Transfor
+                                                Direct Bank Transfer
                                                 </a>
                                             </div>
                                             <div id="cash-on-delivery" className="card-body expanded">
@@ -208,7 +226,7 @@ const CheckOut = () => {
                                             type="submit"
                                             className="btn btn-dark btn-block btn-rounded"
                                         >
-                                            Place Order
+                                            {orderStatusMsg}
                                         </button>
                                     </div>
                                 </div>

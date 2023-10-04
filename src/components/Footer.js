@@ -23,10 +23,6 @@ const Footer = () => {
                                 <a href="tel:18005707777" className="widget-about-call">
                                 (237)672-076-995
                                 </a>
-                                <p className="widget-about-desc">
-                                Register now to get updates on pronot get up icons &amp; coupons
-                                ster now toon.
-                                </p>
                                 <div className="social-icons social-icons-colored">
                                 <a
                                     href="#"
@@ -132,21 +128,8 @@ const Footer = () => {
                     <div className="footer-bottom">
                         <div className="footer-left">
                         <p className="copyright">
-                            Copyright © 2021 Wolmart Store. All Rights Reserved.
+                            Copyright © 2023 Shoprite Store. All Rights Reserved.
                         </p>
-                        </div>
-                        <div className="footer-right">
-                        <span className="payment-label mr-lg-8">
-                            We're using safe payment for
-                        </span>
-                        <figure className="payment">
-                            <img
-                            src={paymentImg}
-                            alt="payment"
-                            width={159}
-                            height={25}
-                            />
-                        </figure>
                         </div>
                     </div>
                 </div>

@@ -1,6 +1,23 @@
+import { useState } from 'react';
 import PageTitle from "../components/PageTitle";
+import NotifySuccess from '../utils/notifications/NotifySuccess';
 
 const Contact = () => {
+
+    const [sendStatus, setSendStatus] = useState('Send Message')
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setTimeout(() => {
+            setSendStatus('Send Message')
+            NotifySuccess("Thank you for your message. We shall get back to you soon.")
+        }
+            , 5000);
+        setSendStatus('Sending...')
+
+        
+    }
+
     return (
         <>
             <PageTitle title={"Contac Us"}/>
@@ -38,7 +55,7 @@ const Contact = () => {
                         </span>
                         <div className="icon-box-content">
                             <h4 className="icon-box-title">E-mail Address</h4>
-                            <p>contact@gandjonlineshop.com</p>
+                            <p>contact@shoprite.com</p>
                         </div>
                         </div>
                         <div className="icon-box text-center icon-box-primary">
@@ -47,7 +64,7 @@ const Contact = () => {
                         </span>
                         <div className="icon-box-content">
                             <h4 className="icon-box-title">Phone Number</h4>
-                            <p>(237) 456-7890 / (234) 456-9870</p>
+                            <p>(237)672-076-995 / (234) 456-9870</p>
                         </div>
                         </div>
                         <div className="icon-box text-center icon-box-primary">
@@ -76,7 +93,11 @@ const Contact = () => {
                     <div className="row gutter-lg pb-3">
                         <div className="col-lg-10 mb-8">
                         <h4 className="title mb-3">Send Us a Message</h4>
-                        <form className="form contact-us-form" action="#" method="post">
+                        <form 
+                            className="form contact-us-form"  
+                            method="post"
+                            onSubmit={handleSubmit}
+                        >
                             <div className="form-group">
                             <label htmlFor="username">Your Name</label>
                             <input
@@ -107,7 +128,7 @@ const Contact = () => {
                             />
                             </div>
                             <button type="submit" className="btn btn-dark btn-rounded">
-                            Send Now
+                                {sendStatus}
                             </button>
                         </form>
                         </div>

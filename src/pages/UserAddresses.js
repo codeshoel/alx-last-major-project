@@ -27,11 +27,15 @@ const UserAddresses = () => {
                                 <tbody>
                                     <tr>
                                     <th>Name:</th>
-                                    <td>Username</td>
+                                    <td>Kum Jude</td>
+                                    </tr>
+                                    <tr>
+                                    <th>Region:</th>
+                                    <td>Centre</td>
                                     </tr>
                                     <tr>
                                     <th>Address:</th>
-                                    <td>Address</td>
+                                    <td>Simbock</td>
                                     </tr>
                                 </tbody>
                                 </table>
@@ -55,11 +59,15 @@ const UserAddresses = () => {
                                 <tbody>
                                     <tr>
                                     <th>Name:</th>
-                                    <td>Username</td>
+                                    <td>Kum Jude</td>
+                                    </tr>
+                                    <tr>
+                                    <th>Region:</th>
+                                    <td>Centre</td>
                                     </tr>
                                     <tr>
                                     <th>Address:</th>
-                                    <td>Address</td>
+                                    <td>Simbock</td>
                                     </tr>
                                 </tbody>
                                 </table>

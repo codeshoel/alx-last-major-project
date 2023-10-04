@@ -1,4 +1,9 @@
+import CartTotal from "../components/CartTotal";
+
 const Orders = () => {
+
+    const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+
     return (
         <>
             <div className="page-content pt-2">
@@ -26,12 +31,11 @@ const Orders = () => {
                             </thead>
                             <tbody>
                                 <tr>
-                                <td className="order-id">#xxx</td>
-                                <td className="order-date">August 20, 2023</td>
+                                <td className="order-id">#SHP0001</td>
+                                <td className="order-date">October 4, 2023</td>
                                 <td className="order-status">Processing</td>
                                 <td className="order-total">
-                                    <span className="order-price">$121.00</span> for
-                                    <span className="order-quantity"> 1</span> item
+                                    <span className="order-price">$<CartTotal cartProducts={cartItems} /></span>
                                 </td>
                                 <td className="order-action">
                                     <a

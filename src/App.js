@@ -26,7 +26,7 @@ import UserAccountDetails from './pages/UserAccountDetails';
 import UserAddresses from './pages/UserAddresses';
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true); // set to true for testing
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // set to true for testing
   // let navigate = useNavigate();
 
 

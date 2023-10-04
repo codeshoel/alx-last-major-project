@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import PageTitle from '../../components/PageTitle';
 import NotifyError from '../../utils/notifications/NotifyError';
+import NotifySuccess from '../../utils/notifications/NotifySuccess';
 
 const Register = () => {
     const navigate = useNavigate();
@@ -10,6 +11,7 @@ const Register = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [statusMessage, setStatusMessage] = useState("Register");
 
 
     const handleSubmit = (e) => {
@@ -19,12 +21,16 @@ const Register = () => {
             email: email,
             password: password
         };
+        setStatusMessage('Creating Account...')
         axios.post('http://localhost:7000/api/v1/auth/signup', data)
             .then(response => {
                 if(response.status === 201) {
+                    NotifySuccess('Account Created Successfully')
                     navigate('/auth/login');
                 } else {
+                    setStatusMessage('Register')
                     NotifyError("Sorry! Something went wrong");
+                    
                 }
                 console.log(response.data)
             })
@@ -121,7 +127,7 @@ const Register = () => {
                                         </label>
                                     </div>
                                     <div className="form-group mb-5 row">
-                                        <input type="submit" value="Register"  className="btn btn-primary" />
+                                        <input type="submit" value={statusMessage}  className="btn btn-primary" />
                                     </div>
                                 </form>
                             </div>

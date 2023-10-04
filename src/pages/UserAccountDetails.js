@@ -1,4 +1,20 @@
+import { useState } from 'react';
+import NotifySuccess from '../utils/notifications/NotifySuccess';
+
+
 const UserAccountDetails = () => {
+
+    const [statusMessage, setStatusMessage] = useState('Save Changes');
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setStatusMessage('Saving...')
+        setTimeout(() => {
+            NotifySuccess('Account Updated Successfully');
+            setStatusMessage('Save Changes')
+        }, 5000);
+    }
+
     return (
         <>
             <div className="page-content pt-2">
@@ -16,7 +32,7 @@ const UserAccountDetails = () => {
                             </div>
                             <form
                             className="form account-details-form"
-                            action="#"
+                            onSubmit={handleSubmit}
                             method="post"
                             >
                             <div className="row">
@@ -29,6 +45,7 @@ const UserAccountDetails = () => {
                                     <input
                                     type="text"
                                     name="name"
+                                    value="Kum Jude"
                                     placeholder="Username"
                                     className="form-control form-control-md"
                                     />
@@ -40,7 +57,7 @@ const UserAccountDetails = () => {
                                     <input
                                         type="email"
                                         name="email"
-                                        placeholder="email@email.com"
+                                        placeholder="kumjude@gmail.com"
                                         className="form-control form-control-md"
                                     />
                                 </div>
@@ -86,7 +103,7 @@ const UserAccountDetails = () => {
                                 type="submit"
                                 className="btn btn-dark btn-rounded btn-sm mb-4"
                             >
-                                Save Changes
+                                {statusMessage}
                             </button>
                             </form>
                     </div>
